@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background-color: black;
+}
+
+.main-container {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+}
+
+h1 {
+    font-size: 100px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #f708d7, #4932b8);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.song input {
+    width: 100%;
+    height: 30px;
+    padding: 20px 20px;
+    font-size: 17px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: whitesmoke;
+    background-color: gray;
+   
+}
+
+.song input::placeholder {
+    color: whitesmoke;
+    opacity: 50%;
+}
+
+.same-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.same-line input {
+    width: 85%;
+    height: 30px;
+    padding: 20px 20px;
+    font-size: 17px;
+    border-radius: 5px;
+    color: whitesmoke;
+    background-color: gray;
+    
+}
+
+.same-line input::placeholder {
+    color: whitesmoke;
+    opacity: 50%;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 10%;
+    border-radius: 5px;
+    color: whitesmoke;
+    background-color: gray;
+    padding: 13px 2px;
+}
+
+.lyrics-container {
+    width: 100%;
+    border: 1px black solid;
+    overflow: scroll;
+    height: 50vh;
+    color: whitesmoke;
+    background-color: gray;
+    border-radius: 5px;
+    overflow-x: hidden;
+    padding: 20px 30px;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+span {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover{
+    background-color: rgba(49, 46, 46, 0.925);
+    color: wheat;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .same-line {
+        gap: 5px;
+    }
+
+    button {
+        width: max-content;
+    }
+
+    .lyrics-container {
+        overflow: scroll;
+        font-size: 8px;
+    }
+}

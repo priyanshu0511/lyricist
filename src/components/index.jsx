@@ -1,0 +1,66 @@
+import React, { useState } from 'react'
+import './style.css'
+
+function Lyricist() {
+
+    const [artist, setArtist] = useState('');
+    const [song, setSong] = useState('');
+    const [lyrics, setLyrics] = useState('');
+    const [found, setFound] = useState(true);
+
+    async function search(e) {
+        e.preventDefault();
+        setSong(e.target[0].value);
+        setArtist(e.target[1].value)
+
+        if (song === '') {
+            alert("Please enter a song!");
+            return;
+        }
+
+        if (artist === '') {
+            alert("Please enter artist's name!");
+            return;
+        }
+
+        const url = `https://api.lyrics.ovh/v1/${artist}/${song}`
+
+        const data = await fetch(`${url}`)
+            .then(response => response.json())
+
+        console.log(data)
+        if (data.error === 'No lyrics found') {
+            setFound(false);
+        } else {
+            setFound(true);
+            setLyrics(data.lyrics);
+        }
+
+    }
+
+    return (
+        <div className='main-container'>
+            <div className="heading">
+                <h1>lyricist</h1>
+            </div>
+            <div className="container">
+                <form onSubmit={search}>
+                    <div className="song">
+                        <input type="text" placeholder="Enter Song's Name"
+                            onChange={(e) => { setSong(e.target.value) }} />
+                    </div>
+                    <div className="same-line">
+                        <input type="text" placeholder="Enter Arist's Name" className='artist'
+                            onChange={(e) => { setArtist(e.target.value) }} />
+                        <button>Search</button>
+                    </div>
+                </form>
+                <div className="lyrics-container">
+                    {found === true ? <pre>{lyrics}</pre> : <span>Sorry, the lyrics cannot be found!!</span>}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Lyricist
