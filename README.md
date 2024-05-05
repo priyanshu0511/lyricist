@@ -4,9 +4,12 @@ A simple lyrics finding app that uses an api to find lyrics of a song for you if
 <br><br>
 It is responsive on every device :)
 <hr>
+
 ## Website:
 
 https://lyricistbypriyanshu.netlify.app/
+
+<hr>
 
 ## Cloning and Running the Application in local
 
