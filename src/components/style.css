@@ -112,6 +112,12 @@ button:hover{
     outline: none;
 }
 
+.fetching{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
 @media only screen and (max-width: 600px) {
     .same-line {
         gap: 5px;

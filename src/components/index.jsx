@@ -7,9 +7,11 @@ function Lyricist() {
     const [song, setSong] = useState('');
     const [lyrics, setLyrics] = useState('');
     const [found, setFound] = useState(true);
+    const [loading,setLoading]=useState(false);
 
     async function search(e) {
         e.preventDefault();
+        setLoading(true);
         setSong(e.target[0].value);
         setArtist(e.target[1].value)
 
@@ -28,7 +30,8 @@ function Lyricist() {
         const data = await fetch(`${url}`)
             .then(response => response.json())
 
-        console.log(data)
+        setLoading(false);
+        //console.log(data)
         if (data.error === 'No lyrics found') {
             setFound(false);
         } else {
@@ -56,7 +59,8 @@ function Lyricist() {
                     </div>
                 </form>
                 <div className="lyrics-container">
-                    {found === true ? <pre>{lyrics}</pre> : <span>Sorry, the lyrics cannot be found!!</span>}
+                    {loading && <div className='fetching'>Fetching Lyrics...</div>}
+                    {!loading && (found === true  ? <pre>{lyrics}</pre> : <span>Sorry, the lyrics cannot be found!!</span>)}
                 </div>
             </div>
         </div>
