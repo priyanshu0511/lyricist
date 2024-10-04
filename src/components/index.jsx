@@ -25,20 +25,29 @@ function Lyricist() {
             return;
         }
 
-        const url = `https://api.lyrics.ovh/v1/${artist}/${song}`
-
-        const data = await fetch(`${url}`)
-            .then(response => response.json())
-
-        setLoading(false);
-        //console.log(data)
-        if (data.error === 'No lyrics found') {
+        try {
+            const url = `https://api.lyrics.ovh/v1/${artist}/${song}`;
+            const response = await fetch(url);
+      
+            // Check for 404 or any other error status
+            if (!response.ok) {
+              throw new Error('Lyrics not found');
+            }
+      
+            const data = await response.json();
+      
+            setLoading(false);
+      
+            if (data.error) {
+              setFound(false);
+            } else {
+              setFound(true);
+              setLyrics(data.lyrics);
+            }
+        } catch (err) {
+            setLoading(false);
             setFound(false);
-        } else {
-            setFound(true);
-            setLyrics(data.lyrics);
         }
-
     }
 
     return (
